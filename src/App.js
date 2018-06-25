@@ -4,17 +4,11 @@ import { schemaData } from './Schema.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { cloneDeep } from 'lodash'
 import { compare } from 'fast-json-patch'
+import { formData } from './FormData'
 
 class App extends Component {
   state = {
-    data: {
-      id: '',
-      u_id: '',
-      title: '',
-      probableCost: { day: 0, cost: '' },
-      description: '',
-      visit: { start: '', end: '' }
-    }
+    data: formData
   }
 
   handleSubmit = e => {
@@ -30,14 +24,19 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App' style={
-        {
+      <div
+        className='App'
+        style={{
           width: '50%',
           position: 'absolute',
           left: '22%'
-        }
-      }>
-        <Form schema={schemaData} onSubmit={this.handleSubmit} />
+        }}
+      >
+        <Form
+          schema={schemaData}
+          formData={this.state.data}
+          onSubmit={this.handleSubmit}
+        />
       </div>
     )
   }
